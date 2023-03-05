@@ -1,4 +1,4 @@
-package com.example.tennis.model;
+package com.example.tennis.domain.player.model;
 
 public class InvalidPlayerException extends RuntimeException {
 

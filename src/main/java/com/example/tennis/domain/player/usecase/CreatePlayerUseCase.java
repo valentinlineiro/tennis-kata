@@ -1,32 +1,23 @@
-package com.example.tennis.usecase;
+package com.example.tennis.domain.player.usecase;
 
-import com.example.tennis.common.InputValidator;
-import com.example.tennis.common.UUIDProvider;
 import com.example.tennis.domain.player.model.Player;
-import jakarta.validation.constraints.NotBlank;
+import com.example.tennis.domain.player.port.SavePlayerPort;
+import com.example.tennis.domain.player.usecase.input.CreatePlayerUseCaseInput;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Value;
 
 @AllArgsConstructor
 public class CreatePlayerUseCase {
 
-	private InputValidator inputValidator;
-	private UUIDProvider uuidProvider;
+	private SavePlayerPort savePlayerPort;
 
-	public Output execute(Input input) {
-		inputValidator.validate(input);
-		return Output.of(Player.builder().id(Player.Id.of(uuidProvider.generate())).name(input.getName()).build());
+	public Output execute(CreatePlayerUseCaseInput input) {
+		return Output.builder().player(savePlayerPort.save(Player.builder().name(input.name()).build())).build();
 	}
 
-	@Value(staticConstructor = "of")
-	public static class Input {
-
-		@NotBlank
-		String name;
-
-	}
-
-	@Value(staticConstructor = "of")
+	@Value
+	@Builder
 	public static class Output {
 
 		Player player;

@@ -1,10 +1,11 @@
-package com.example.tennis.model;
+package com.example.tennis.domain.player.model;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.Value;
 
 import java.util.UUID;
+
+import static java.util.Objects.requireNonNull;
 
 @Data
 @Builder
@@ -14,10 +15,11 @@ public class Player {
 
 	private String name;
 
-	@Value(staticConstructor = "of")
-	public static class Id {
+	public record Id(UUID value) {
 
-		UUID value;
+		public Id {
+			requireNonNull(value);
+		}
 
 	}
 }

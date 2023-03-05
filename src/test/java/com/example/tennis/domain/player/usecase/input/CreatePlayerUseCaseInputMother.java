@@ -1,15 +1,14 @@
-package com.example.tennis.domain.player.usecase;
+package com.example.tennis.domain.player.usecase.input;
 
-import com.example.tennis.domain.player.usecase.input.CreatePlayerUseCaseInput;
-import com.example.tennis.domain.player.usecase.input.CreatePlayerUseCaseInput.InputBuilder;
+import com.example.tennis.domain.player.usecase.input.CreatePlayerUseCaseInput.CreatePlayerUseCaseInputBuilder;
 
 public class CreatePlayerUseCaseInputMother {
 
-	public static InputBuilder rogerFederer() {
+	public static CreatePlayerUseCaseInputBuilder rogerFederer() {
 		return CreatePlayerUseCaseInput.builder().name("Roger Federer");
 	}
 
-	public static InputBuilder invalidName() {
+	public static CreatePlayerUseCaseInputBuilder invalidName() {
 		return CreatePlayerUseCaseInput.builder().name("");
 	}
 
